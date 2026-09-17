@@ -194,7 +194,7 @@ def update_page():
 
     fig.canvas.draw_idle()
 
-ax_previous = plt.axes([0.30, 0.04, 0.15, 0.07])
+ax_previous = plt.axes((0.30, 0.04, 0.15, 0.07))
 
 button_previous = Button(
     ax_previous,
@@ -214,7 +214,7 @@ def previous_page(event):
 button_previous.on_clicked(previous_page)
 
 
-ax_next = plt.axes([0.55, 0.04, 0.15, 0.07])
+ax_next = plt.axes((0.55, 0.04, 0.15, 0.07))
 
 button_next = Button(
     ax_next,

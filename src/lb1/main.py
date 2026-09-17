@@ -4,7 +4,6 @@ from matplotlib.widgets import Button
 
 sample_sizes = [10, 100, 1000, 10000]
 
-# Чтобы результаты каждый раз были одинаковыми
 np.random.seed(42)
 
 # Генерация всех выборок
@@ -43,8 +42,17 @@ def calculate_histogram(sample, bins):
 
     n = len(sample)
 
+    # Минимальное и максимальное значение выборки
+    sample_min = np.min(sample)
+    sample_max = np.max(sample)
+
     # Границы интервалов
-    bin_edges = np.linspace(0, 1, bins + 1)
+    # Теперь гистограмма строится от min до max
+    bin_edges = np.linspace(
+        sample_min,
+        sample_max,
+        bins + 1
+    )
 
     # Ширина одного интервала
     bin_width = bin_edges[1] - bin_edges[0]
@@ -70,6 +78,7 @@ def calculate_histogram(sample, bins):
                 (sample >= left) &
                 (sample < right)
             )
+
         # Добавляем количество точек
         # в текущем интервале
         counts.append(count)
@@ -151,6 +160,8 @@ def update_page():
     # Количество полос
     bins = n // 10
 
+    # Математически рассчитываем гистограмму
+    # от минимального до максимального значения выборки
     bin_edges, heights = calculate_histogram(sample, bins)
 
     # Ширина одного столбика
@@ -180,7 +191,9 @@ def update_page():
     axes[1].set_xlabel('x')
     axes[1].set_ylabel('Плотность')
 
-    axes[1].set_xlim(0, 1)
+    # Теперь ось X гистограммы от min до max выборки
+    axes[1].set_xlim(0,1)
+
 
     axes[1].grid(True)
     axes[1].legend()
@@ -193,6 +206,7 @@ def update_page():
     )
 
     fig.canvas.draw_idle()
+
 
 ax_previous = plt.axes((0.30, 0.04, 0.15, 0.07))
 

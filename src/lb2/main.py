@@ -180,9 +180,9 @@ def one_experiment(distribution, n):
     квантили всеми тремя способами.
     """
 
-    if distribution == "normal":
+    if distribution == "нормальное":
         sample = generate_normal(n)
-    elif distribution == "uniform":
+    elif distribution == "равномерное":
         sample = generate_uniform(n)
     else:
         raise ValueError("Неизвестное распределение")
@@ -292,8 +292,8 @@ def run_all_experiments():
     print("=" * 70)
 
     for distribution in [
-        "normal",
-        "uniform"
+        "нормальное",
+        "равномерное"
     ]:
 
         for n in SAMPLE_SIZES:
@@ -430,10 +430,10 @@ def run_all_experiments():
 
 def true_quantile(distribution, q):
 
-    if distribution == "normal":
+    if distribution == "нормальное":
         return norm.ppf(q)
 
-    if distribution == "uniform":
+    if distribution == "равномерное":
         return q
 
     raise ValueError("Неизвестное распределение")
@@ -534,7 +534,7 @@ def make_distribution_plot(
 
     def plot():
 
-        if distribution == "normal":
+        if distribution == "нормальное":
             sample = generate_normal(n)
         else:
             sample = generate_uniform(n)
@@ -575,7 +575,7 @@ def make_distribution_plot(
         )
 
         # Истинная плотность
-        if distribution == "normal":
+        if distribution == "нормальное":
 
             true_density = (
                 np.exp(-x**2 / 2)
@@ -709,8 +709,8 @@ def main():
     distribution_plots = []
 
     for distribution in [
-        "normal",
-        "uniform"
+        "нормальное",
+        "равномерное"
     ]:
         for n in SAMPLE_SIZES:
 
@@ -861,8 +861,8 @@ def main():
     variance_plots = []
 
     for distribution in [
-        "normal",
-        "uniform"
+        "нормальное",
+        "равномерное"
     ]:
 
         for q in QUANTILES:
